@@ -1,0 +1,32 @@
+# 构建产物（scripts/build.sh 输出到这里）
+build.noindex/
+build/
+DerivedData/
+*.xcarchive
+*.dmg
+*.pkg
+
+# Xcode 个人状态
+xcuserdata/
+*.xcuserstate
+
+# 签名 / 证书 / 本地配置
+*.p12
+*.cer
+*.mobileprovision
+*.provisionprofile
+.env*
+
+# macOS
+.DS_Store
+
+# AI 工具配置
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+
+# 本地签名团队覆盖（见 Signing.xcconfig）
+Signing.local.xcconfig
+
+# Cloudflare wrangler 本地状态
+.wrangler/

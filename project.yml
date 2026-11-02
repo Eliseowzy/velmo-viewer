@@ -1,0 +1,98 @@
+# Xcode 工程由 XcodeGen 生成：brew install xcodegen && xcodegen
+# 改了这个文件或增删了源文件后重新跑一次 xcodegen。
+name: VelmoViewer
+options:
+  bundleIdPrefix: ink.velmo
+  deploymentTarget:
+    macOS: "13.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+
+# 开发团队写在 Signing.xcconfig，fork 后可以用 Signing.local.xcconfig 覆盖
+configFiles:
+  Debug: Signing.xcconfig
+  Release: Signing.xcconfig
+
+settings:
+  base:
+    MARKETING_VERSION: "1.3.3"
+    CURRENT_PROJECT_VERSION: "8"
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    ENABLE_HARDENED_RUNTIME: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    DEAD_CODE_STRIPPING: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: "2.10.1"
+
+# 宿主 App 分两个渠道：VelmoViewer 是官网 dmg 直装版，带 Sparkle 自动更新；
+# VelmoViewerAppStore 交给 App Store，不能带自更新代码，Sparkle 完全不链接。
+# 两者除了下面各自 target 里的差别，其余都一样，写在这个模板里。
+targetTemplates:
+  ViewerApp:
+    type: application
+    platform: macOS
+    sources:
+      - App
+      - Shared
+    dependencies:
+      - target: VelmoViewerQuickLook
+        embed: true
+        codeSign: true
+    settings:
+      base:
+        PRODUCT_NAME: Velmo Viewer
+        PRODUCT_BUNDLE_IDENTIFIER: ink.velmo.viewer
+        INFOPLIST_FILE: App/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        COMBINE_HIDPI_IMAGES: YES
+
+targets:
+  VelmoViewer:
+    templates:
+      - ViewerApp
+    dependencies:
+      - package: Sparkle
+    scheme: {}
+    settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: App/VelmoViewer.entitlements
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) DIRECT_DISTRIBUTION
+        # 写进 Info.plist 的 SUFeedURL / SUPublicEDKey；本地测试更新时可以在命令行覆盖 feed 地址
+        VV_UPDATE_FEED_URL: https://media.velmo.md/viewer/appcast.xml
+        VV_UPDATE_PUBLIC_KEY: h72m2fWW77wgZ2T+t0eNteQCAycRkdY3Dw3pN7exbaI=
+
+  VelmoViewerAppStore:
+    templates:
+      - ViewerApp
+    scheme: {}
+    settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: App/AppStore.entitlements
+
+  VelmoViewerQuickLook:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: QuickLook
+        excludes:
+          - web
+      - path: QuickLook/web
+        type: folder
+        buildPhase: resources
+      - Shared
+    dependencies:
+      - sdk: QuickLookUI.framework
+      - sdk: WebKit.framework
+    settings:
+      base:
+        PRODUCT_NAME: VelmoViewerQuickLook
+        PRODUCT_BUNDLE_IDENTIFIER: ink.velmo.viewer.quicklook
+        INFOPLIST_FILE: QuickLook/Info.plist
+        CODE_SIGN_ENTITLEMENTS: QuickLook/QuickLook.entitlements
+        SKIP_INSTALL: YES

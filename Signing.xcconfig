@@ -1,0 +1,4 @@
+// 签名用的开发团队。fork 之后不用改这个文件：在同目录新建 Signing.local.xcconfig（已被 git 忽略），
+// 写一行 DEVELOPMENT_TEAM = 你的团队 ID，再跑一次 xcodegen。
+DEVELOPMENT_TEAM = 68DH8M43U8
+#include? "Signing.local.xcconfig"

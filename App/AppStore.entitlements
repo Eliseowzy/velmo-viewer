@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>$(TeamIdentifierPrefix)ink.velmo.viewer</string>
+	</array>
+	<!-- 实时预览里的 WKWebView 网页进程要用，示例文档里的网络图片也靠它 -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+</dict>
+</plist>

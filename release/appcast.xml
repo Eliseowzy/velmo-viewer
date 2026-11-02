@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Velmo Viewer 直装版的更新源，发布在 https://media.velmo.md/viewer/appcast.xml。
+     由 scripts/publish.sh 维护，别手改已发布的条目。 -->
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>Velmo Viewer</title>
+    <link>https://media.velmo.md/viewer/appcast.xml</link>
+    <language>en</language>
+    <!-- 新版本插在这里 -->
+    <item>
+      <title>1.3.3</title>
+      <pubDate>Sat, 31 Oct 2026 11:59:09 GMT</pubDate>
+      <sparkle:version>8</sparkle:version>
+      <sparkle:shortVersionString>1.3.3</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description xml:lang="ja" sparkle:format="markdown"><![CDATA[
+- **表を正しく表示** — 空のセル（左上が空欄など）がある表で列が欠けなくなりました。Windows の改行や行末の空白を含む表も正しく表示されます。
+- **文書が空白にならない** — `---` で始まるが front matter ではないファイルも内容が表示されます。BOM 付きファイルの最初の見出しも正しく認識されます。
+- **日本語・中国語の太字と斜体を改善** — `**太字。**続き` のような書き方も太字になります。
+- **見出しへのリンクが動作** — 目次の `[設定](#設定)` のようなリンクで該当の見出しへ移動できます。
+- **対応する HTML を拡大** — `<mark>`、`<table>`、`<details open>` などのよく使うタグがソースのままではなく正しく表示されます。
+]]></description>
+      <description xml:lang="ko" sparkle:format="markdown"><![CDATA[
+- **표가 올바르게 표시됩니다**: 빈 셀(왼쪽 위 칸이 비어 있는 경우 등)이 있는 표에서 열이 빠지지 않습니다. Windows 줄바꿈이나 줄 끝 공백이 있는 표도 정상적으로 표시됩니다.
+- **문서가 빈 화면으로 나오지 않습니다**: `---`로 시작하지만 front matter가 아닌 파일도 내용이 표시되고, BOM이 있는 파일의 첫 제목도 제대로 인식됩니다.
+- **한중일 텍스트의 굵게·기울임 개선**: `**굵게.**다음` 같은 표기도 굵게 표시됩니다.
+- **제목 링크 이동**: 목차의 `[설정](#설정)` 같은 링크로 해당 제목으로 이동할 수 있습니다.
+- **더 많은 HTML 지원**: `<mark>`, `<table>`, `<details open>` 등 자주 쓰는 태그가 소스 그대로가 아니라 정상적으로 표시됩니다.
+]]></description>
+      <description xml:lang="en" sparkle:format="markdown"><![CDATA[
+- **Tables render correctly.** Tables with an empty cell (such as a blank top-left corner) no longer lose a column, and tables in files with Windows line endings or trailing spaces now display as tables.
+- **Documents no longer go blank.** A file that starts with `---` but isn't front matter now shows its content, and files saved with a BOM show their first heading correctly.
+- **Better bold and italics in Chinese and Japanese.** Text like `**加粗。**后面` is now bold.
+- **Links to headings work.** Table-of-contents links such as `[Setup](#setup)` jump to the heading.
+- **More HTML supported.** Common tags like `<mark>`, `<table>` and `<details open>` now render instead of showing as source.
+]]></description>
+      <description xml:lang="zh-Hans" sparkle:format="markdown"><![CDATA[
+- **表格显示正确了**：有空单元格的表格（比如左上角留空）不再少一列；Windows 换行或行尾有空格的表格也能正常显示。
+- **文档不会再空白**：以 `---` 开头但不是 front matter 的文件能正常显示内容；带 BOM 的文件第一个标题也能正确识别。
+- **中日文的粗体、斜体更可靠**：像 `**加粗。**后面` 这样的写法现在会加粗。
+- **标题链接能跳转了**：目录里的 `[安装](#安装)` 这类链接可以跳到对应标题。
+- **支持更多 HTML**：`<mark>`、`<table>`、`<details open>` 等常用标签会正常渲染，不再显示成源码。
+]]></description>
+      <description xml:lang="zh-Hant" sparkle:format="markdown"><![CDATA[
+- **表格顯示正確了**：有空白儲存格的表格（例如左上角留空）不再少一欄；Windows 換行或行尾有空格的表格也能正常顯示。
+- **文件不會再空白**：以 `---` 開頭但不是 front matter 的檔案能正常顯示內容；帶 BOM 的檔案第一個標題也能正確辨識。
+- **中日文的粗體、斜體更可靠**：像 `**加粗。**後面` 這樣的寫法現在會加粗。
+- **標題連結能跳轉了**：目錄裡的 `[安裝](#安裝)` 這類連結可以跳到對應標題。
+- **支援更多 HTML**：`<mark>`、`<table>`、`<details open>` 等常用標籤會正常渲染，不再顯示成原始碼。
+]]></description>
+      <enclosure url="https://media.velmo.md/viewer/1.3.3/Velmo-Viewer-1.3.3.dmg" type="application/x-apple-diskimage" sparkle:edSignature="tkzWTzmbA4nGrvztnGG93XEPCyhz7cWTIdSEYgaztGIPNNeYYDNd9sTIQgO/NrI5Z8UD0A4XA75GHuUlJZXMCw==" length="4848226"/>
+    </item>
+    <item>
+      <title>1.3.2</title>
+      <pubDate>Fri, 30 Oct 2026 16:37:55 GMT</pubDate>
+      <sparkle:version>7</sparkle:version>
+      <sparkle:shortVersionString>1.3.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description xml:lang="ja" sparkle:format="markdown"><![CDATA[
+- **設定画面に使い方のヒント** — 「クイックプレビュー」の下に、Finder で Markdown ファイルを選択してスペースキーを押すと表示できることを示す一文を追加しました。
+]]></description>
+      <description xml:lang="ko" sparkle:format="markdown"><![CDATA[
+- **설정 화면에 사용 안내 추가**: 「빠른 미리보기」 아래에 Finder에서 Markdown 파일을 선택하고 스페이스 바를 누르면 볼 수 있다는 안내가 표시됩니다.
+]]></description>
+      <description xml:lang="en" sparkle:format="markdown"><![CDATA[
+- **How to preview, right in Settings.** A short hint under Quick Preview reminds you to select a Markdown file in Finder and press Space.
+]]></description>
+      <description xml:lang="zh-Hans" sparkle:format="markdown"><![CDATA[
+- **设置页加上使用提示**：「快速预览」下方多了一行说明：在访达中选中 Markdown 文件，按空格即可快速查看。
+]]></description>
+      <description xml:lang="zh-Hant" sparkle:format="markdown"><![CDATA[
+- **設定頁加上使用提示**：「快速預覽」下方多了一行說明：在 Finder 中選取 Markdown 檔案，按空白鍵即可快速查看。
+]]></description>
+      <enclosure url="https://media.velmo.md/viewer/1.3.2/Velmo-Viewer-1.3.2.dmg" type="application/x-apple-diskimage" sparkle:edSignature="D/PcItlbGJIQtUrM2qutJ8tQ4UCyidr9cfJHwejAOhLv2tIaCDWv+VbECpWF/FWwfmakkbKrxO0LYQYj6vEsBA==" length="4848172"/>
+    </item>
+    <item>
+      <title>1.3.1</title>
+      <pubDate>Fri, 30 Oct 2026 13:48:03 GMT</pubDate>
+      <sparkle:version>6</sparkle:version>
+      <sparkle:shortVersionString>1.3.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description xml:lang="ja" sparkle:format="markdown"><![CDATA[
+- **メンテナンスリリース** — アプリ自体に変更はありません。新しいバージョンの配信方法のみを調整しました。
+]]></description>
+      <description xml:lang="ko" sparkle:format="markdown"><![CDATA[
+- **유지 관리 릴리스**: 앱 자체에는 변경 사항이 없으며, 새 버전을 배포하는 방식만 조정했습니다.
+]]></description>
+      <description xml:lang="en" sparkle:format="markdown"><![CDATA[
+- **Maintenance release.** No changes to the app itself; this update only refreshes how new versions are delivered.
+]]></description>
+      <description xml:lang="zh-Hans" sparkle:format="markdown"><![CDATA[
+- **维护版本**：App 本身没有变化，只调整了新版本的发布方式。
+]]></description>
+      <description xml:lang="zh-Hant" sparkle:format="markdown"><![CDATA[
+- **維護版本**：App 本身沒有變化，只調整了新版本的發佈方式。
+]]></description>
+      <enclosure url="https://media.velmo.md/viewer/1.3.1/Velmo-Viewer-1.3.1.dmg" type="application/x-apple-diskimage" sparkle:edSignature="w4tdX6pZV292tcMHeYmTUrNkUnM/IqSRwLNkxUX0LdAafEUsl1/9UbhR2/dumJ6Yq+mkR3/bhxSX89MWMaVkDQ==" length="4847617"/>
+    </item>
+    <item>
+      <title>1.3.0</title>
+      <pubDate>Fri, 30 Oct 2026 13:21:23 GMT</pubDate>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description xml:lang="ja" sparkle:format="markdown"><![CDATA[
+- **初回起動ガイド** — 3 ステップで Velmo Viewer のクイックルック拡張機能をオンにし、動作テストもできます。Finder でスペースキーを押すだけで Markdown をプレビューできます。
+- **アップデート確認の結果を設定内に表示** — ダイアログではなく、設定画面にそのまま表示されます。
+]]></description>
+      <description xml:lang="ko" sparkle:format="markdown"><![CDATA[
+- **첫 실행 안내.** 세 단계로 Velmo Viewer의 Quick Look 확장을 켜고 제대로 동작하는지 테스트할 수 있어, Finder에서 스페이스바만 누르면 Markdown을 바로 미리 볼 수 있습니다.
+- **업데이트 확인 결과를 설정에 표시.** 이제 대화상자 대신 설정 화면에 바로 결과가 나옵니다.
+]]></description>
+      <description xml:lang="en" sparkle:format="markdown"><![CDATA[
+- **Guided first-launch setup.** A short three-step walkthrough helps you turn on Velmo Viewer in Quick Look and tests that it works, so Markdown previews with Space in Finder right away.
+- **Update check result shown in Settings.** Checking for updates now reports the result inline instead of in a dialog.
+]]></description>
+      <description xml:lang="zh-Hans" sparkle:format="markdown"><![CDATA[
+- **首次启动引导**：三步带你在系统里打开 Velmo Viewer 的快速查看扩展，并可一键测试是否生效，装好后在访达里按空格即可预览 Markdown。
+- **检查更新结果直接显示在设置里**：不再弹出对话框。
+]]></description>
+      <description xml:lang="zh-Hant" sparkle:format="markdown"><![CDATA[
+- **首次啟動引導**：三個步驟帶你在系統中開啟 Velmo Viewer 的快速查看擴充功能，並可一鍵測試是否生效，裝好後在 Finder 中按空白鍵即可預覽 Markdown。
+- **檢查更新結果直接顯示在設定中**：不再彈出對話框。
+]]></description>
+      <enclosure url="https://media.velmo.md/viewer/1.3.0/Velmo-Viewer-1.3.0.dmg" type="application/x-apple-diskimage" sparkle:edSignature="mBA3t7oddKfVCazexmr5EGiNarDUP+kcXnbjyPl8BN5QEC/le2nyzAg7mHkFf61QavPq5Vx1tVoox7p+GzHNCQ==" length="4846890"/>
+    </item>
+    <item>
+      <title>1.2.0</title>
+      <pubDate>Fri, 30 Oct 2026 08:58:18 GMT</pubDate>
+      <sparkle:version>4</sparkle:version>
+      <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description xml:lang="ja" sparkle:format="markdown"><![CDATA[
+- **自動アップデート** — Velmo Viewer を開くと新しいバージョンを確認し、バックグラウンドでダウンロードして、終了時にインストールします。設定でオフにしたり、手動で確認したりできます。
+- **グラフのプレビューがより安全に** — `echarts` コードブロック内のリンクは開かなくなり、書類がグラフを通じてスクリプトを実行することはできません。
+]]></description>
+      <description xml:lang="ko" sparkle:format="markdown"><![CDATA[
+- **자동 업데이트.** Velmo Viewer를 열면 새 버전을 확인하고, 백그라운드에서 다운로드한 다음 종료할 때 설치합니다. 설정에서 끄거나 직접 확인할 수 있습니다.
+- **더 안전한 차트 미리보기.** `echarts` 코드 블록의 링크가 더 이상 열리지 않아, 문서가 차트를 통해 스크립트를 실행할 수 없습니다.
+]]></description>
+      <description xml:lang="en" sparkle:format="markdown"><![CDATA[
+- **Automatic updates.** Velmo Viewer now checks for new versions when you open it, downloads them in the background and installs them when you quit. You can turn this off or check manually in Settings.
+- **Safer chart previews.** Links inside `echarts` code blocks no longer open, so a document can't run scripts through a chart.
+]]></description>
+      <description xml:lang="zh-Hans" sparkle:format="markdown"><![CDATA[
+- **自动更新**：打开 Velmo Viewer 时会检查新版本，在后台下载，退出时安装。可以在设置里关掉，或手动检查更新。
+- **图表预览更安全**：`echarts` 代码块里的链接不再能打开，文档无法借图表执行脚本。
+]]></description>
+      <description xml:lang="zh-Hant" sparkle:format="markdown"><![CDATA[
+- **自動更新**：打開 Velmo Viewer 時會檢查新版本，在背景下載，結束時安裝。可以在設定中關閉，或手動檢查更新。
+- **圖表預覽更安全**：`echarts` 程式碼區塊中的連結不再能打開，文件無法藉由圖表執行腳本。
+]]></description>
+      <enclosure url="https://media.velmo.md/viewer/1.2.0/Velmo-Viewer-1.2.0.dmg" type="application/x-apple-diskimage" sparkle:edSignature="jdFmAqoIO1zLIvBJgiHBehdaCxgkusoSivGEyfIJw4bEvtrF34Z3nNCq+dHgnhGfQ98/9JSRWUqQMho0R8zvDA==" length="4783277"/>
+    </item>
+  </channel>
+</rss>
