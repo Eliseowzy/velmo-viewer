@@ -14,7 +14,8 @@
 2. 写 `release/notes/<版本>.md`（英文，必须有），可以再加 `<版本>.zh-Hans.md`、`.zh-Hant.md`、`.ja.md`、`.ko.md`，Sparkle 按用户的系统语言选
 3. `scripts/build.sh release`：签名、公证、做 dmg
 4. `scripts/publish.sh`：签名并预览 appcast；确认后 `scripts/publish.sh --upload` 上传到 R2，同时覆盖固定下载地址 `viewer/latest/Velmo-Viewer.dmg`
-5. 提交 `release/appcast.xml`，打 tag
+5. 提交 `release/appcast.xml`，打 tag `v<版本>` 并推送
+6. `scripts/publish.sh --github`：把同一个 dmg 和 `.sha256` 发到 GitHub Releases，说明取自 `release/notes/<版本>.md`。脚本会先核对它和 R2 上发布的是同一个文件，tag 没推送或 Release 已存在时会停下。从 GitHub 下载的用户同样通过 appcast 自动更新
 
 官网下载按钮指向固定的 `https://media.velmo.md/viewer/latest/Velmo-Viewer.dmg`（缓存 5 分钟，下载的文件名带版本号），发版不用再改官网。
 

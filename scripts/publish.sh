@@ -3,12 +3,14 @@
 #   scripts/publish.sh             只准备：复制改名、算 sha256、EdDSA 签名、把新版本写进 release/appcast.xml。不上传
 #   scripts/publish.sh --upload    准备好后上传：先传 dmg 和 .sha256，再覆盖固定下载地址 viewer/latest/Velmo-Viewer.dmg，
 #                                  最后传 appcast.xml（老用户的 App 读它发现新版本）
+#   scripts/publish.sh --github    上传、提交、推送 tag 之后再跑：把 R2 上同一个 dmg 发到 GitHub Releases，
+#                                  说明取自 release/notes/<版本>.md。从 GitHub 装的用户同样走 appcast 自动更新
 #
 # 发版前要准备：
 #   - project.yml 里的 MARKETING_VERSION 和 CURRENT_PROJECT_VERSION 都加一。Sparkle 比较的是构建号，必须递增
 #   - release/notes/<版本>.md 写更新说明（英文，必须有），可选 <版本>.zh-Hans.md / .zh-Hant.md / .ja.md / .ko.md
 #   - 跑完 scripts/build.sh release
-# 上传后：提交 release/appcast.xml，打 tag vX.Y.Z。官网下载按钮指向固定的 latest 地址，不用改也不用重新部署。
+# 上传后：提交 release/appcast.xml，打 tag vX.Y.Z 并推送，再跑 --github。官网下载按钮指向固定的 latest 地址，不用改也不用重新部署。
 #
 # EdDSA 私钥在本机钥匙串里（账户 ink.velmo.viewer），公钥写在 project.yml 的 VV_UPDATE_PUBLIC_KEY。
 # 私钥丢了，已安装的用户就再也收不到更新：用 generate_keys --account ink.velmo.viewer -x <文件> 导出备份。
@@ -21,11 +23,55 @@ HOST=https://media.velmo.md
 SPARKLE_BIN=$OUT/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin
 # 官网下载按钮用的固定地址，每次发版覆盖成新版本的 dmg
 LATEST_KEY=viewer/latest/Velmo-Viewer.dmg
+REPO=Eliseowzy/velmo-viewer
 UPLOAD=0
 [ "${1:-}" = --upload ] && UPLOAD=1
 
 die() { echo "$1" >&2; exit 1; }
 plist() { /usr/libexec/PlistBuddy -c "Print :$1" "$APP/Contents/Info.plist"; }
+wrangler() { npx --yes wrangler "$@"; }
+
+if [ "${1:-}" = --github ]; then
+  # 不重新打包：用 --upload 时暂存的那个 dmg，并核对它和 R2 上已发布的是同一个文件
+  VERSION=$(plist CFBundleShortVersionString)
+  NAME="Velmo-Viewer-$VERSION.dmg"
+  STAGE="$OUT/publish/$VERSION"
+  TAG="v$VERSION"
+  [ -f "$STAGE/$NAME" ] || die "没有 $STAGE/$NAME，先跑 scripts/publish.sh --upload"
+  git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null || die "GitHub 上还没有 tag $TAG：先提交、打 tag 并推送"
+  gh release view "$TAG" -R $REPO >/dev/null 2>&1 && die "GitHub 上已经有 $TAG 的 Release"
+  # 同样不能用 curl 探 media.velmo.md：没上传的话 404 会被缓存
+  PUBLISHED=$(wrangler r2 object get "$BUCKET/viewer/$VERSION/$NAME.sha256" --remote --pipe 2>/dev/null | cut -d' ' -f1)
+  LOCAL=$(shasum -a 256 "$STAGE/$NAME" | cut -d' ' -f1)
+  [ -n "$PUBLISHED" ] || die "R2 上没有 $VERSION，先跑 scripts/publish.sh --upload"
+  [ "$PUBLISHED" = "$LOCAL" ] || die "$STAGE/$NAME 和 R2 上发布的不是同一个文件"
+  xcrun stapler validate -q "$STAGE/$NAME" || die "$STAGE/$NAME 没有公证票据"
+  BODY="$STAGE/github-release.md"
+  cat > "$BODY" <<EOT
+## Download
+
+**[$NAME](https://github.com/$REPO/releases/download/$TAG/$NAME)** — macOS $(plist LSMinimumSystemVersion | cut -d. -f1) or later, Apple silicon and Intel. Signed with Developer ID and notarized by Apple.
+
+This build updates itself: it checks for new versions on launch and installs them when you quit. You can also use **Check for Updates…** in Settings or the app menu.
+
+After installing, open Velmo Viewer once and follow the three-step guide to turn on the Quick Look extension. Then select any \`.md\` file in Finder and press Space.
+
+Prefer the Mac App Store? Search for "Velmo Viewer" there; that version is updated by the App Store.
+
+## What's new in $VERSION
+
+$(cat release/notes/$VERSION.md)
+
+## Checksum
+
+\`\`\`
+SHA-256  $LOCAL  $NAME
+\`\`\`
+EOT
+  gh release create "$TAG" "$STAGE/$NAME" "$STAGE/$NAME.sha256" -R $REPO --verify-tag \
+    --title "Velmo Viewer $VERSION" --notes-file "$BODY"
+  exit 0
+fi
 
 [ -d "$APP" ] || die "没有 $APP，先跑 scripts/build.sh release"
 [ -x "$SPARKLE_BIN/sign_update" ] || die "找不到 Sparkle 工具（$SPARKLE_BIN），先跑一次 scripts/build.sh 让 Xcode 拉取 Sparkle"
@@ -88,7 +134,6 @@ if [ $UPLOAD = 0 ]; then
   exit 0
 fi
 
-wrangler() { npx --yes wrangler "$@"; }
 # 不能直接请求 media.velmo.md 上还没有的地址判断存不存在：Cloudflare 会把 404 缓存几个小时
 if wrangler r2 object get "$BUCKET/$KEY.sha256" --remote --pipe >/dev/null 2>&1; then
   restore
@@ -108,4 +153,4 @@ wrangler r2 object put "$BUCKET/$LATEST_KEY" --remote --file "$STAGE/$NAME" \
 wrangler r2 object put "$BUCKET/viewer/appcast.xml" --remote --file "$STAGE/appcast.xml" \
   --content-type application/xml --cache-control "public, max-age=300"
 echo "== 已上传 $HOST/$KEY、$HOST/$LATEST_KEY 和 $HOST/viewer/appcast.xml"
-echo "== 还要：git add release/appcast.xml && git commit && git tag v$VERSION"
+echo "== 还要：git add release/appcast.xml && git commit && git tag v$VERSION，推送后跑 scripts/publish.sh --github"
