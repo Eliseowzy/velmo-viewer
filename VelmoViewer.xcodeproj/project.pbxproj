@@ -111,7 +111,7 @@
 		EDE7228233228F27807CF5CE /* QuickLookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookUI.framework; path = System/Library/Frameworks/QuickLookUI.framework; sourceTree = SDKROOT; };
 		EFBA78E5D9A0CE2C6A10D6EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F669ADE9E84939666D3FCE9D /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = QuickLook/web; sourceTree = SOURCE_ROOT; };
-		"TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_1C09B4DF-88D4-4C9E-AFD2-6D661F6FE323" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,10 +204,10 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		"TEMP_8C4BD318-D5A9-4B34-B5FC-8C4AFBD53502" /* velmo-viewer */ = {
+		"TEMP_5F5E6166-070E-485C-AD25-E76377EB4DA9" /* velmo-viewer */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */,
+				"TEMP_1C09B4DF-88D4-4C9E-AFD2-6D661F6FE323" /* Signing.xcconfig */,
 			);
 			path = "velmo-viewer";
 			sourceTree = "<group>";
@@ -467,7 +467,7 @@
 		};
 		1B88BECC069FC97FC7E36704 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_1C09B4DF-88D4-4C9E-AFD2-6D661F6FE323" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -501,7 +501,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -524,7 +524,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -597,7 +597,7 @@
 		};
 		DB613B6611FDEEF047DE1FD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_1C09B4DF-88D4-4C9E-AFD2-6D661F6FE323" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -631,7 +631,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -648,7 +648,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

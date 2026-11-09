@@ -422,6 +422,34 @@
         }
       }
     },
+    "Only complete records in the first 2 MiB are shown; later records are omitted." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仅显示前 2 MiB 中的完整记录，后续记录已省略。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅顯示前 2 MiB 中的完整記錄，後續記錄已省略。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "先頭 2 MiB 内の完全なレコードのみを表示し、以降は省略しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "처음 2 MiB 내의 완전한 레코드만 표시하며 이후 레코드는 생략합니다."
+          }
+        }
+      }
+    },
     "Open System Settings…" : {
       "localizations" : {
         "zh-Hans" : {

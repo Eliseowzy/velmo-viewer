@@ -54,6 +54,8 @@
 				<string>public.css</string>
 				<string>org.iso.sql</string>
 				<string>public.json</string>
+				<string>public.ndjson</string>
+				<string>ink.velmo.viewer.jsonl</string>
 				<string>public.xml</string>
 				<string>public.yaml</string>
 			</array>

@@ -25,7 +25,7 @@ What we wanted: select a file anywhere, press Space, and get the same result as 
 - Headings, bold, italic, strikethrough, links and inline code
 - Task lists, tables, block quotes and footnotes
 - Syntax highlighting in code blocks
-- Source-file previews for Swift, C/C++, Objective-C, Java, Python, JavaScript/TypeScript, Go, Rust, Ruby, PHP, shell, HTML/CSS, SQL, JSON, XML and YAML
+- Source-file previews for Swift, C/C++, Objective-C, Java, Python, JavaScript/TypeScript, Go, Rust, Ruby, PHP, shell, HTML/CSS, SQL, JSON/JSONL, XML and YAML
 - LaTeX math, inline and display
 - ` ```echarts ` blocks: an ECharts option written as JSON, drawn as a chart
 - ` ```mermaid ` blocks: flowcharts, sequence diagrams and anything else Mermaid supports

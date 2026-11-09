@@ -9,7 +9,7 @@ final class MarkdownRenderer: NSObject, WKNavigationDelegate {
     private let page = URL(string: "\(AssetSchemeHandler.scheme)://app/index.html")!
     private enum Content {
         case markdown(String)
-        case code(source: String, language: String)
+        case code(source: String, language: String, notice: String?)
     }
 
     private var content: Content = .markdown("")
@@ -41,8 +41,8 @@ final class MarkdownRenderer: NSObject, WKNavigationDelegate {
 
     /// 显示独立代码文件；语言标识由 SourceLanguage 统一映射。
     func render(code: String, language: String, baseDir: URL?, settings: ViewerSettings,
-                completion: ((Error?) -> Void)? = nil) {
-        load(content: .code(source: code, language: language), baseDir: baseDir,
+                notice: String? = nil, completion: ((Error?) -> Void)? = nil) {
+        load(content: .code(source: code, language: language, notice: notice), baseDir: baseDir,
              settings: settings, completion: completion)
     }
 
@@ -72,8 +72,8 @@ final class MarkdownRenderer: NSObject, WKNavigationDelegate {
             switch content {
             case .markdown(let markdown):
                 render(markdown: markdown, baseDir: dir, settings: new)
-            case .code(let source, let language):
-                render(code: source, language: language, baseDir: dir, settings: new)
+            case .code(let source, let language, let notice):
+                render(code: source, language: language, baseDir: dir, settings: new, notice: notice)
             }
             return
         }
@@ -140,9 +140,11 @@ final class MarkdownRenderer: NSObject, WKNavigationDelegate {
             """
             arguments = ["md": markdown, "dir": baseDir, "css": overrideCss,
                          "plugins": Self.plugins(page: page), "strings": Self.webStrings]
-        case .code(let source, let language):
-            renderJS = "await velmoRenderCode(source, language);"
-            arguments = ["source": source, "language": language, "css": overrideCss]
+        case .code(let source, let language, let notice):
+            renderJS = language == "jsonl"
+                ? "await velmoRenderJSONL(source, notice);"
+                : "await velmoRenderCode(source, language);"
+            arguments = ["source": source, "language": language, "notice": notice ?? "", "css": overrideCss]
         }
         let js = renderJS + """
         const s = document.createElement('style');

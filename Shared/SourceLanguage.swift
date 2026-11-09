@@ -21,6 +21,7 @@ enum SourceLanguage: String, CaseIterable {
     case css
     case sql
     case json
+    case jsonl
     case xml
     case yaml
 
@@ -62,6 +63,8 @@ enum SourceLanguage: String, CaseIterable {
             return ["org.iso.sql"]
         case .json:
             return ["public.json"]
+        case .jsonl:
+            return ["public.ndjson", "ink.velmo.viewer.jsonl"]
         case .xml:
             return ["public.xml"]
         case .yaml:
@@ -107,6 +110,8 @@ enum SourceLanguage: String, CaseIterable {
             return ["sql"]
         case .json:
             return ["json", "jsonc", "geojson"]
+        case .jsonl:
+            return ["jsonl", "ndjson"]
         case .xml:
             return ["xml", "xsd", "xsl", "xslt", "plist", "storyboard", "xib"]
         case .yaml:

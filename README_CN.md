@@ -25,7 +25,7 @@ Markdown 已经是写东西最常用的格式之一：README、笔记、会议�
 - 标题、粗体、斜体、删除线、链接、行内代码
 - 任务列表、表格、引用、脚注
 - 代码块语法高亮
-- Swift、C/C++、Objective-C、Java、Python、JavaScript/TypeScript、Go、Rust、Ruby、PHP、Shell、HTML/CSS、SQL、JSON、XML、YAML 源文件预览
+- Swift、C/C++、Objective-C、Java、Python、JavaScript/TypeScript、Go、Rust、Ruby、PHP、Shell、HTML/CSS、SQL、JSON/JSONL、XML、YAML 源文件预览
 - LaTeX 数学公式，行内和块级
 - ` ```echarts ` 代码块：写 JSON 格式的 ECharts option，画成图表
 - ` ```mermaid ` 代码块：流程图、时序图等 Mermaid 支持的图

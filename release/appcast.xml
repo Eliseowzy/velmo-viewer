@@ -8,6 +8,39 @@
     <language>en</language>
     <!-- 新版本插在这里 -->
     <item>
+      <title>1.4.0</title>
+      <pubDate>Mon, 09 Nov 2026 11:04:26 GMT</pubDate>
+      <sparkle:version>9</sparkle:version>
+      <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description xml:lang="ja" sparkle:format="markdown"><![CDATA[
+- **ソースコードの Quick Look に対応**：Swift、C/C++、Objective-C、Java、Python、JavaScript/TypeScript、Go、Rust、Ruby、PHP、シェル、HTML/CSS、SQL、JSON、XML、YAML などのファイルを選択し、スペースキーで構文ハイライト付きのプレビューを表示できます。
+- **JSON Lines に対応**：`.jsonl` と `.ndjson` の各行を独立した JSON レコードとしてハイライトします。1行に構文エラーがあっても、残りのレコードを表示できます。
+- **大きなファイルも安定してプレビュー**：ソースファイルの読み込みは先頭 2 MiB までです。JSON Lines は完全なレコードの末尾で停止し、以降のレコードが省略されたことを明示します。
+]]></description>
+      <description xml:lang="ko" sparkle:format="markdown"><![CDATA[
+- **소스 코드 Quick Look 지원**: Swift, C/C++, Objective-C, Java, Python, JavaScript/TypeScript, Go, Rust, Ruby, PHP, 셸, HTML/CSS, SQL, JSON, XML, YAML 등의 파일을 선택하고 스페이스 바를 눌러 구문 강조 표시된 소스를 미리 볼 수 있습니다.
+- **JSON Lines 지원**: `.jsonl` 및 `.ndjson` 파일의 각 줄을 독립적인 JSON 레코드로 강조 표시합니다. 한 줄에 오류가 있어도 나머지 레코드는 계속 표시됩니다.
+- **대용량 파일도 안정적으로 미리 보기**: 소스 파일은 처음 2MiB까지만 읽습니다. JSON Lines는 완전한 레코드 끝에서 표시를 멈추고 이후 레코드가 생략되었음을 명확히 안내합니다.
+]]></description>
+      <description xml:lang="en" sparkle:format="markdown"><![CDATA[
+- **Quick Look for source code.** Press Space to preview Swift, C/C++, Objective-C, Java, Python, JavaScript/TypeScript, Go, Rust, Ruby, PHP, shell, HTML/CSS, SQL, JSON, XML, YAML and more with syntax highlighting.
+- **JSON Lines support.** Preview `.jsonl` and `.ndjson` files with each line highlighted as an independent JSON record. A malformed line does not prevent the remaining records from appearing.
+- **Responsive large-file previews.** Source files are limited to the first 2 MiB. JSON Lines previews stop at a complete record and clearly indicate when later records are omitted.
+]]></description>
+      <description xml:lang="zh-Hans" sparkle:format="markdown"><![CDATA[
+- **支持代码文件快速预览**：在访达中选中 Swift、C/C++、Objective-C、Java、Python、JavaScript/TypeScript、Go、Rust、Ruby、PHP、Shell、HTML/CSS、SQL、JSON、XML、YAML 等文件，按空格即可查看语法高亮的源码。
+- **支持 JSON Lines**：`.jsonl` 和 `.ndjson` 文件会逐行按独立 JSON 记录高亮；某一行格式错误不会影响其他记录显示。
+- **大文件预览更稳妥**：代码文件最多读取前 2 MiB；JSON Lines 会在完整记录处停止，并明确提示后续记录已省略。
+]]></description>
+      <description xml:lang="zh-Hant" sparkle:format="markdown"><![CDATA[
+- **支援程式碼檔案快速預覽**：在 Finder 中選取 Swift、C/C++、Objective-C、Java、Python、JavaScript/TypeScript、Go、Rust、Ruby、PHP、Shell、HTML/CSS、SQL、JSON、XML、YAML 等檔案，按空白鍵即可查看語法高亮的原始碼。
+- **支援 JSON Lines**：`.jsonl` 和 `.ndjson` 檔案會逐行按獨立 JSON 記錄高亮；某一行格式錯誤不會影響其他記錄顯示。
+- **大型檔案預覽更穩定**：程式碼檔案最多讀取前 2 MiB；JSON Lines 會在完整記錄處停止，並明確提示後續記錄已省略。
+]]></description>
+      <enclosure url="https://media.velmo.md/viewer/1.4.0/Velmo-Viewer-1.4.0.dmg" type="application/x-apple-diskimage" sparkle:edSignature="YWeL0IN8tWS8zNpzfEmXFMCcZogbVwyawG1nZys8NSq+lnjGxUyfIUlvwYqidBzYlzd07CkP6maAytJEd6CuDw==" length="4970798"/>
+    </item>
+    <item>
       <title>1.3.3</title>
       <pubDate>Sat, 31 Oct 2026 11:59:09 GMT</pubDate>
       <sparkle:version>8</sparkle:version>
