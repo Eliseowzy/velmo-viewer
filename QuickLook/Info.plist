@@ -31,6 +31,31 @@
 			<key>QLSupportedContentTypes</key>
 			<array>
 				<string>net.daringfireball.markdown</string>
+				<string>public.markdown</string>
+				<string>public.swift-source</string>
+				<string>public.c-source</string>
+				<string>public.c-header</string>
+				<string>public.c-plus-plus-source</string>
+				<string>public.c-plus-plus-header</string>
+				<string>public.objective-c-source</string>
+				<string>public.objective-c-plus-plus-source</string>
+				<string>com.sun.java-source</string>
+				<string>public.python-script</string>
+				<string>public.shell-script</string>
+				<string>public.zsh-script</string>
+				<string>com.netscape.javascript-source</string>
+				<string>public.typescript-source</string>
+				<string>com.microsoft.typescript</string>
+				<string>public.go-source</string>
+				<string>public.rust-source</string>
+				<string>public.ruby-script</string>
+				<string>public.php-script</string>
+				<string>public.html</string>
+				<string>public.css</string>
+				<string>org.iso.sql</string>
+				<string>public.json</string>
+				<string>public.xml</string>
+				<string>public.yaml</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
 			<false/>

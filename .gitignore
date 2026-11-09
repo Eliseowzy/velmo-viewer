@@ -1,3 +1,6 @@
+# npm（仅用于同步 renderer 的 Web 构建产物）
+node_modules/
+
 # 构建产物（scripts/build.sh 输出到这里）
 build.noindex/
 build/

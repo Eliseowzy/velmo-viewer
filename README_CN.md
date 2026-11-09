@@ -25,6 +25,7 @@ Markdown 已经是写东西最常用的格式之一：README、笔记、会议�
 - 标题、粗体、斜体、删除线、链接、行内代码
 - 任务列表、表格、引用、脚注
 - 代码块语法高亮
+- Swift、C/C++、Objective-C、Java、Python、JavaScript/TypeScript、Go、Rust、Ruby、PHP、Shell、HTML/CSS、SQL、JSON、XML、YAML 源文件预览
 - LaTeX 数学公式，行内和块级
 - ` ```echarts ` 代码块：写 JSON 格式的 ECharts option，画成图表
 - ` ```mermaid ` 代码块：流程图、时序图等 Mermaid 支持的图
@@ -106,7 +107,7 @@ DEVELOPMENT_TEAM = 你的团队 ID
 ```
 App/          宿主 App（SwiftUI）：引导、设置、实时预览、示例文档、图标
 QuickLook/    快速查看扩展
-  web/        渲染页：quicklook.js/css 是预编译的 Markdown 渲染器（源码不公开，见下方许可证）；
+  web/        渲染页：quicklook.js/css 由独立的 velmo-render 项目构建；
               vv-echarts.js、vv-mermaid.js 负责对应代码块；
               echarts.min.js、mermaid.min.js 是 npm 包的 dist 文件，升级时直接替换
 Shared/       两边共用：设置读写（ViewerSettings.swift）、渲染（MarkdownRenderer.swift）、多语言字符串
@@ -121,7 +122,7 @@ project.yml   XcodeGen 工程描述
 
 ### 几个不太显然的实现细节
 
-- **一个渲染器，两处使用。** `MarkdownRenderer` 用 WKWebView 加载 `QuickLook/web/index.html`。扩展里用它出空格预览，App 里用它做实时预览，App 直接读内嵌扩展包里的 `web/`，不重复打包。
+- **一个渲染器，两处使用。** `MarkdownRenderer` 用 WKWebView 加载 `QuickLook/web/index.html`。扩展里用它出空格预览，App 里用它做实时预览，App 直接读内嵌扩展包里的 `web/`，不重复打包。Markdown 解析和代码高亮来自按版本锁定的 `velmo-render` npm 包。修改 `package.json` 中的版本后，运行 `npm run sync-renderer` 从 lockfile 锁定的包同步两个产物。
 - **设置怎么共享。** App 把设置写到 App Group 容器里的 `settings.json`，扩展每次预览重新读。没用 `UserDefaults(suiteName:)`，因为常驻进程会读到缓存的旧值。
 - **扩展不能写文件。** 快速查看扩展的沙盒是只读的，连 App Group 容器也写不了。所以「测试」按钮的判断方式是：扩展出完图发一个 Darwin 通知（`ink.velmo.viewer.previewed`），App 在几秒内收到就算生效。
 - **本地资源怎么加载。** 沙盒里的 WKWebView 网页进程读不了任意本地文件，所以渲染页和文档旁边的图片都走自定义 scheme `vv-asset://`，由宿主进程读出来再交给网页。
@@ -135,9 +136,10 @@ project.yml   XcodeGen 工程描述
 
 ## 许可证
 
-除下面两点外，本仓库按 [Apache License 2.0](LICENSE) 发布：
+除下面一点外，本仓库按 [Apache License 2.0](LICENSE) 发布：
 
-- `QuickLook/web/quicklook.js` 和 `quicklook.css` 是预编译的渲染器，源码不公开，不在 Apache-2.0 授权范围内，可以原样随构建产物再分发。
 - 「Velmo」「Velmo Viewer」名称和图标不随许可证授权。欢迎 fork，但分发修改版请换名字和图标。
+
+`QuickLook/web/quicklook.js` 和 `quicklook.css` 由采用 Apache-2.0 许可证的 `velmo-render` 源码构建。
 
 第三方库的许可证见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

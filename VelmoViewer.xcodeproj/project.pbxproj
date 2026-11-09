@@ -16,6 +16,7 @@
 		3D7E65A1FAD1999AF91CD304 /* Sample.md in Resources */ = {isa = PBXBuildFile; fileRef = DE49A57856D754C3DB31DB08 /* Sample.md */; };
 		3EB0C1A7B5D368BB0E474923 /* Sample.md in Resources */ = {isa = PBXBuildFile; fileRef = DE49A57856D754C3DB31DB08 /* Sample.md */; };
 		4173A07387EE24BB4EF5D79C /* web in Resources */ = {isa = PBXBuildFile; fileRef = F669ADE9E84939666D3FCE9D /* web */; };
+		6A054CDB39FFD5BC853E947F /* SourceLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902AF149DF8CDB6D83B2EA66 /* SourceLanguage.swift */; };
 		766EA40E58FD573F9B037918 /* VelmoViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962579407FB5903A18D7CCA5 /* VelmoViewerApp.swift */; };
 		78B484F743A87D0B64C023A2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700964996E496E6B7EF2850F /* WebKit.framework */; };
 		7AF99F1082B372C5C18CC6F7 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3836125F5A4CC41F86AEEAE2 /* Updater.swift */; };
@@ -23,6 +24,7 @@
 		8CC9FD1D5E44BC134806A87F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD97803B69017BB747317C /* ContentView.swift */; };
 		8EFA3F57F27CD0A2C5820927 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C1EAC15BB385B8726D601302 /* Localizable.xcstrings */; };
 		8FBC075EE0D0C4830350E649 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD97803B69017BB747317C /* ContentView.swift */; };
+		92FFA380F30BFCA0C2167D40 /* SourceLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902AF149DF8CDB6D83B2EA66 /* SourceLanguage.swift */; };
 		96346C78BACE97EF7062F138 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 78835B6C360D3E066589C193 /* Sparkle */; };
 		9795403D6367B847CA19798A /* VelmoViewerQuickLook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 218E022321BAF02B4BF0D49E /* VelmoViewerQuickLook.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9D6F4B4292311F5F18F5DE56 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 786FAD53D590EEDBB59A1F3C /* PrivacyInfo.xcprivacy */; };
@@ -34,6 +36,7 @@
 		D2448AB7A64FE4F84F39A853 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C1EAC15BB385B8726D601302 /* Localizable.xcstrings */; };
 		D9D190BDB7F406F7CAEA04AA /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587772297227F9B547CA4B5F /* MarkdownRenderer.swift */; };
 		DAC6371604321F84DD2F4006 /* ViewerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA6E8715B82C95C9C475E2 /* ViewerSettings.swift */; };
+		EC95B6ADB89AAD9E27CABD10 /* SourceLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902AF149DF8CDB6D83B2EA66 /* SourceLanguage.swift */; };
 		EF3D32C007FB4A7E197477CA /* VelmoViewerQuickLook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 218E022321BAF02B4BF0D49E /* VelmoViewerQuickLook.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F31CC46F591C35E40D2F1345 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 11250DD636CFBC70FA77C3F6 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
@@ -98,6 +101,7 @@
 		786FAD53D590EEDBB59A1F3C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7A5C644F40D9BCD8A078FA4E /* VelmoViewerAppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VelmoViewerAppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F705C24FD4F37C997CE02E /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/Sample.md; sourceTree = "<group>"; };
+		902AF149DF8CDB6D83B2EA66 /* SourceLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLanguage.swift; sourceTree = "<group>"; };
 		962579407FB5903A18D7CCA5 /* VelmoViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelmoViewerApp.swift; sourceTree = "<group>"; };
 		A9F9725A5F076F67F1716C4D /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/Sample.md; sourceTree = "<group>"; };
 		BA9EA362E84675BA5561C4BD /* VelmoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VelmoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +111,7 @@
 		EDE7228233228F27807CF5CE /* QuickLookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookUI.framework; path = System/Library/Frameworks/QuickLookUI.framework; sourceTree = SDKROOT; };
 		EFBA78E5D9A0CE2C6A10D6EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F669ADE9E84939666D3FCE9D /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = QuickLook/web; sourceTree = SOURCE_ROOT; };
-		"TEMP_8894AEE7-C0A4-43F0-85D4-DE230E43B174" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,7 @@
 			children = (
 				C1EAC15BB385B8726D601302 /* Localizable.xcstrings */,
 				587772297227F9B547CA4B5F /* MarkdownRenderer.swift */,
+				902AF149DF8CDB6D83B2EA66 /* SourceLanguage.swift */,
 				2ACA6E8715B82C95C9C475E2 /* ViewerSettings.swift */,
 			);
 			path = Shared;
@@ -199,10 +204,10 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		"TEMP_C72F77E7-2BBD-4177-AD2E-84041C907635" /* velmo-viewer */ = {
+		"TEMP_8C4BD318-D5A9-4B34-B5FC-8C4AFBD53502" /* velmo-viewer */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_8894AEE7-C0A4-43F0-85D4-DE230E43B174" /* Signing.xcconfig */,
+				"TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */,
 			);
 			path = "velmo-viewer";
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 			files = (
 				A319325C62FD419DCBA61A55 /* MarkdownRenderer.swift in Sources */,
 				3320086C011FE59336FBEF98 /* PreviewViewController.swift in Sources */,
+				6A054CDB39FFD5BC853E947F /* SourceLanguage.swift in Sources */,
 				A739646238EC9811B9CC0A54 /* ViewerSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +380,7 @@
 			files = (
 				8FBC075EE0D0C4830350E649 /* ContentView.swift in Sources */,
 				D9D190BDB7F406F7CAEA04AA /* MarkdownRenderer.swift in Sources */,
+				92FFA380F30BFCA0C2167D40 /* SourceLanguage.swift in Sources */,
 				A13DB87B020F02BD5CE763C0 /* Updater.swift in Sources */,
 				766EA40E58FD573F9B037918 /* VelmoViewerApp.swift in Sources */,
 				179F688F77831057D8C9BFD8 /* ViewerSettings.swift in Sources */,
@@ -386,6 +393,7 @@
 			files = (
 				8CC9FD1D5E44BC134806A87F /* ContentView.swift in Sources */,
 				26C0A944EFF98D82DB3DEC39 /* MarkdownRenderer.swift in Sources */,
+				EC95B6ADB89AAD9E27CABD10 /* SourceLanguage.swift in Sources */,
 				7AF99F1082B372C5C18CC6F7 /* Updater.swift in Sources */,
 				16A1250B2F4CC658FED2B118 /* VelmoViewerApp.swift in Sources */,
 				DAC6371604321F84DD2F4006 /* ViewerSettings.swift in Sources */,
@@ -459,7 +467,7 @@
 		};
 		1B88BECC069FC97FC7E36704 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_8894AEE7-C0A4-43F0-85D4-DE230E43B174" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -589,7 +597,7 @@
 		};
 		DB613B6611FDEEF047DE1FD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_8894AEE7-C0A4-43F0-85D4-DE230E43B174" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_60C22487-B020-4597-A219-47657D16892E" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

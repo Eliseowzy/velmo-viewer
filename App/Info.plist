@@ -73,6 +73,51 @@
 				</array>
 			</dict>
 		</dict>
+		<!-- 这些类型 macOS 没有稳定的系统声明；只声明文件类型，不声明 App 能打开它们 -->
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.go-source</string>
+			<key>UTTypeDescription</key>
+			<string>Go Source</string>
+			<key>UTTypeConformsTo</key>
+			<array><string>public.source-code</string></array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array><string>go</string></array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.rust-source</string>
+			<key>UTTypeDescription</key>
+			<string>Rust Source</string>
+			<key>UTTypeConformsTo</key>
+			<array><string>public.source-code</string></array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array><string>rs</string></array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.typescript-source</string>
+			<key>UTTypeDescription</key>
+			<string>TypeScript Source</string>
+			<key>UTTypeConformsTo</key>
+			<array><string>public.source-code</string></array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>ts</string>
+					<string>tsx</string>
+					<string>mts</string>
+					<string>cts</string>
+				</array>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

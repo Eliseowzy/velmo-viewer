@@ -1,13 +1,18 @@
 import AppKit
 import WebKit
 
-// 用 web/ 里的渲染页显示 Markdown。
+// 用 web/ 里的渲染页显示 Markdown 和独立代码文件。
 // 扩展里出空格预览、App 里的实时预览都用它，所以两边看到的效果完全一致。
 
 final class MarkdownRenderer: NSObject, WKNavigationDelegate {
     let webView: WKWebView
     private let page = URL(string: "\(AssetSchemeHandler.scheme)://app/index.html")!
-    private var markdown = ""
+    private enum Content {
+        case markdown(String)
+        case code(source: String, language: String)
+    }
+
+    private var content: Content = .markdown("")
     private var baseDir = ""
     private var settings = ViewerSettings()
     private var completion: ((Error?) -> Void)?
@@ -31,8 +36,20 @@ final class MarkdownRenderer: NSObject, WKNavigationDelegate {
 
     /// 加载渲染页并显示文档；baseDir 是文档所在文件夹，用来解析相对路径的图片
     func render(markdown: String, baseDir: URL?, settings: ViewerSettings, completion: ((Error?) -> Void)? = nil) {
+        load(content: .markdown(markdown), baseDir: baseDir, settings: settings, completion: completion)
+    }
+
+    /// 显示独立代码文件；语言标识由 SourceLanguage 统一映射。
+    func render(code: String, language: String, baseDir: URL?, settings: ViewerSettings,
+                completion: ((Error?) -> Void)? = nil) {
+        load(content: .code(source: code, language: language), baseDir: baseDir,
+             settings: settings, completion: completion)
+    }
+
+    private func load(content: Content, baseDir: URL?, settings: ViewerSettings,
+                      completion: ((Error?) -> Void)?) {
         finish(nil)
-        self.markdown = markdown
+        self.content = content
         self.baseDir = baseDir.map(AssetSchemeHandler.url(forDirectory:)) ?? "\(AssetSchemeHandler.scheme)://app/"
         self.settings = settings
         self.completion = completion
@@ -52,12 +69,31 @@ final class MarkdownRenderer: NSObject, WKNavigationDelegate {
         settings = new
         if needsReload {
             let dir = AssetSchemeHandler.directory(from: baseDir)
-            render(markdown: markdown, baseDir: dir, settings: new)
+            switch content {
+            case .markdown(let markdown):
+                render(markdown: markdown, baseDir: dir, settings: new)
+            case .code(let source, let language):
+                render(code: source, language: language, baseDir: dir, settings: new)
+            }
             return
         }
         applyAppearance()
         webView.callAsyncJavaScript("document.getElementById('vv-override').textContent = css",
-                                    arguments: ["css": new.overrideCss], in: nil, in: .page, completionHandler: nil)
+                                    arguments: ["css": overrideCss], in: nil, in: .page, completionHandler: nil)
+    }
+
+    private var overrideCss: String {
+        switch content {
+        case .markdown:
+            return settings.overrideCss
+        case .code:
+            // 代码视图不能被文章宽度设置限制；其余字号和代码换行设置继续生效。
+            var css = settings.overrideCss + " .velmo-article.velmo-code-view { max-width: none; }"
+            if settings.wrapCode {
+                css += " .velmo-article.velmo-code-view > pre > code { width: auto; min-width: 0; }"
+            }
+            return css
+        }
     }
 
     private func applyAppearance() {
@@ -90,23 +126,38 @@ final class MarkdownRenderer: NSObject, WKNavigationDelegate {
     // MARK: - WKNavigationDelegate
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        let js = """
-        window.vvStrings = strings;
-        await velmoRender(md, dir);
-        await Promise.all(Object.entries(plugins).map(async ([lang, url]) => {
-          if (!document.querySelector(`.velmo-article pre > code.language-${lang}`)) return;
-          try { await (await import(url)).render(); } catch (e) { console.error(e); }
-        }));
+        let renderJS: String
+        var arguments: [String: Any]
+        switch content {
+        case .markdown(let markdown):
+            renderJS = """
+            window.vvStrings = strings;
+            await velmoRender(md, dir);
+            await Promise.all(Object.entries(plugins).map(async ([lang, url]) => {
+              if (!document.querySelector(`.velmo-article pre > code.language-${lang}`)) return;
+              try { await (await import(url)).render(); } catch (e) { console.error(e); }
+            }));
+            """
+            arguments = ["md": markdown, "dir": baseDir, "css": overrideCss,
+                         "plugins": Self.plugins(page: page), "strings": Self.webStrings]
+        case .code(let source, let language):
+            renderJS = "await velmoRenderCode(source, language);"
+            arguments = ["source": source, "language": language, "css": overrideCss]
+        }
+        let js = renderJS + """
         const s = document.createElement('style');
         s.id = 'vv-override';
         s.textContent = css;
         document.head.append(s);
         """
-        webView.callAsyncJavaScript(js, arguments: ["md": markdown, "dir": baseDir, "css": settings.overrideCss,
-                                                    "plugins": Self.plugins(page: page), "strings": Self.webStrings],
-                                    in: nil, in: .page) { [weak self] result in
-            if case .failure(let error) = result { NSLog("Velmo Viewer: %@", error.localizedDescription) }
-            self?.finish(nil)
+        webView.callAsyncJavaScript(js, arguments: arguments, in: nil, in: .page) { [weak self] result in
+            switch result {
+            case .success:
+                self?.finish(nil)
+            case .failure(let error):
+                NSLog("Velmo Viewer: %@", error.localizedDescription)
+                self?.finish(error)
+            }
         }
     }
 

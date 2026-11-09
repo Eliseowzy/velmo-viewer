@@ -1,0 +1,10 @@
+{
+  "name": "velmo-viewer-web-assets",
+  "private": true,
+  "scripts": {
+    "sync-renderer": "scripts/sync-renderer.sh"
+  },
+  "devDependencies": {
+    "velmo-render": "0.1.1"
+  }
+}

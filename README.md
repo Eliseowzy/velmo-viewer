@@ -25,6 +25,7 @@ What we wanted: select a file anywhere, press Space, and get the same result as 
 - Headings, bold, italic, strikethrough, links and inline code
 - Task lists, tables, block quotes and footnotes
 - Syntax highlighting in code blocks
+- Source-file previews for Swift, C/C++, Objective-C, Java, Python, JavaScript/TypeScript, Go, Rust, Ruby, PHP, shell, HTML/CSS, SQL, JSON, XML and YAML
 - LaTeX math, inline and display
 - ` ```echarts ` blocks: an ECharts option written as JSON, drawn as a chart
 - ` ```mermaid ` blocks: flowcharts, sequence diagrams and anything else Mermaid supports
@@ -106,7 +107,7 @@ Then build with your own certificate. `scripts/build.sh` looks for a Developer I
 ```
 App/          Host app (SwiftUI): onboarding, settings, live preview, sample document, icon
 QuickLook/    Quick Look extension
-  web/        Render page: quicklook.js/css is the prebuilt Markdown renderer (closed source, see License);
+  web/        Render page: quicklook.js/css is built from the independent velmo-render project;
               vv-echarts.js and vv-mermaid.js handle their code blocks;
               echarts.min.js and mermaid.min.js are npm dist files, replaced as-is on upgrade
 Shared/       Shared by both: settings (ViewerSettings.swift), rendering (MarkdownRenderer.swift), localized strings
@@ -121,7 +122,7 @@ There are two app targets. `VelmoViewer` is the direct-download build with [Spar
 
 ### Non-obvious implementation details
 
-- **One renderer, two uses.** `MarkdownRenderer` loads `QuickLook/web/index.html` in a WKWebView. The extension uses it for the Space-bar preview and the app for its live preview; the app reads `web/` straight from the embedded extension bundle instead of shipping a second copy.
+- **One renderer, two uses.** `MarkdownRenderer` loads `QuickLook/web/index.html` in a WKWebView. The extension uses it for the Space-bar preview and the app for its live preview; the app reads `web/` straight from the embedded extension bundle instead of shipping a second copy. Markdown parsing and syntax highlighting come from the versioned `velmo-render` npm package. Update its version in `package.json`, then run `npm run sync-renderer` to sync the two vendored files from the locked package.
 - **How settings are shared.** The app writes `settings.json` to the App Group container and the extension rereads it on every preview. `UserDefaults(suiteName:)` isn't used because a long-lived process would read stale cached values.
 - **The extension can't write files.** A Quick Look extension's sandbox is read-only, App Group container included. So the **Test** button works like this: after rendering, the extension posts a Darwin notification (`ink.velmo.viewer.previewed`), and if the app receives it within a few seconds, the extension is active.
 - **Loading local resources.** A sandboxed WKWebView content process can't read arbitrary local files, so the render page and images next to the document go through a custom `vv-asset://` scheme; the host process reads them and hands them to the page.
@@ -135,9 +136,10 @@ There are two app targets. `VelmoViewer` is the direct-download build with [Spar
 
 ## License
 
-This repository is released under the [Apache License 2.0](LICENSE), with two exceptions:
+This repository is released under the [Apache License 2.0](LICENSE), with one exception:
 
-- `QuickLook/web/quicklook.js` and `quicklook.css` are a prebuilt renderer whose source isn't published. They're not covered by Apache-2.0, but may be redistributed unmodified as part of builds.
 - The "Velmo" and "Velmo Viewer" names and icon aren't licensed. Forks are welcome, but please use a different name and icon if you distribute a modified version.
+
+`QuickLook/web/quicklook.js` and `quicklook.css` are built from the Apache-2.0-licensed `velmo-render` source.
 
 Third-party licenses are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
